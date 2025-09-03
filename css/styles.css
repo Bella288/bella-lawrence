@@ -1,0 +1,429 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+}
+header {
+  text-align: center;
+  margin: 20px 0;
+  position: relative;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+input, select, button {
+  padding: 10px;
+  font-size: 1em;
+}
+.navbar {
+  background-color: #f8f9fa;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+/* Changed active tab style to bold instead of yellow */
+.navbar a.active {
+  font-weight: bold;
+  color: #333;
+}
+.navbar a:hover {
+  background-color: #e9ecef;
+}
+.period {
+  padding: 10px;
+  margin: 5px 20px;
+  background: #ddd;
+  border: 3px solid transparent;
+  transition: border-color 0.3s ease;
+}
+.period.active {
+  background: #ffeb3b;
+}
+.period.upcoming {
+  border: 5px dashed #ffeb3b;
+}
+/* Flash animations - only apply when flash is enabled */
+body.flash-enabled .period.active {
+  animation: pulse 1s infinite;
+}
+body.flash-enabled .period.upcoming {
+  animation: border-pulse 1s infinite;
+}
+body.flash-enabled .period.upcoming.soon,
+body.flash-enabled .period.active.soon {
+  animation: border-pulse-fast 0.5s infinite;
+}
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+@keyframes border-pulse {
+  0% { border-color: #ffeb3b; }
+  50% { border-color: rgba(255, 235, 59, 0.3); }
+  100% { border-color: #ffeb3b; }
+}
+@keyframes border-pulse-fast {
+  0% { border-color: #ffeb3b; }
+  50% { border-color: rgba(255, 235, 59, 0.3); }
+  100% { border-color: #ffeb3b; }
+}
+.assignment.missing {
+  background: #ffcccc;
+}
+.assignment.upcoming::before {
+  content: "⚠️ ";
+}
+.period-edit {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+#gpa-display {
+  margin: 20px;
+  font-weight: bold;
+}
+#search-input {
+  padding: 8px;
+  width: 60%;
+  margin-right: 10px;
+}
+
+#search-btn, #clear-search-btn {
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.no-results {
+  padding: 15px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+#sort-by {
+  padding: 8px;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.assignment-item.completed {
+  opacity: 0.7;
+  background-color: #f0f0f0;
+}
+#currentDateTime {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 0.5rem;
+  font-weight: normal;
+}
+/* Quick Links Styles */
+.links-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.link-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.link-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.link-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #0066cc;
+  text-decoration: none;
+}
+
+.link-card a:hover {
+  text-decoration: underline;
+}
+
+.link-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.delete-link-btn {
+  background: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 0.3rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.no-links {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+
+/* Overview Styles */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+}
+
+.stat-card h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.stat-value {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0.5rem 0;
+  color: #0066cc;
+}
+
+.stat-description {
+  color: #666;
+  margin: 0;
+}
+
+.class-grades {
+  margin-top: 2rem;
+}
+
+.class-grade-item {
+  background: white;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.class-grade-name {
+  font-weight: bold;
+}
+
+.class-grade-value {
+  font-size: 1.2rem;
+  color: #0066cc;
+}
+
+.no-data {
+  text-align: center;
+  padding: 2rem;
+  color: #666;
+}
+/* Status Dialog Styles */
+.status-dialog {
+  border: none;
+  border-radius: 10px;
+  padding: 0;
+  max-width: 400px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.status-dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.dialog-content {
+  padding: 20px;
+  text-align: center;
+}
+
+.dialog-content h3 {
+  margin-top: 0;
+  color: #333;
+}
+
+.dialog-content p {
+  margin-bottom: 20px;
+  color: #666;
+}
+
+.dialog-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.dialog-btn {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.dialog-btn.missing {
+  background-color: #ff5252;
+  color: white;
+}
+
+.dialog-btn.missing:hover {
+  background-color: #ff0000;
+}
+
+.dialog-btn.not-graded {
+  background-color: #ffb142;
+  color: white;
+}
+
+.dialog-btn.not-graded:hover {
+  background-color: #ff9f1a;
+}
+
+.dialog-btn.cancel {
+  background-color: #ddd;
+  color: #333;
+}
+
+.dialog-btn.cancel:hover {
+  background-color: #ccc;
+}
+.error-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-image: url('https://raw.githubusercontent.com/Bella288/futrschool/refs/heads/main/assets/images/Cat_Sleeping_on_Keyboard.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #333;
+  position: relative;
+}
+
+.error-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  z-index: 0;
+}
+
+.error-content h1, 
+.error-content h2, 
+.error-content h3 {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+}
+
+.error-content h1 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: #2c3e50;
+}
+
+.error-content h2 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  line-height: 1.5;
+}
+
+.error-content h3 {
+  font-size: 1.1rem;
+  font-weight: normal;
+  margin-top: 2rem;
+}
+
+.error-content a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.error-content a:hover {
+  text-decoration: underline;
+}
+
+/* Flash Toggle Button Styles */
+.flash-toggle-container {
+  position: absolute;
+  top: 10px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.flash-toggle-btn {
+  background: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 20px;
+  padding: 5px 12px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.flash-toggle-btn:hover {
+  background: #e0e0e0;
+}
+
+.flash-toggle-btn.flash-off {
+  background: #666;
+  color: white;
+  border-color: #444;
+}
+
+.flash-toggle-btn.flash-off:hover {
+  background: #555;
+}
+
+.flash-status {
+  font-size: 0.8rem;
+  color: #666;
+  font-weight: 500;
+}
