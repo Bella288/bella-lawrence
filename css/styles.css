@@ -9,7 +9,7 @@ header {
   position: relative;
 }
 form {
-  display: flex;
+  dislay: flex;
   flex-direction: column;
   gap: 10px;
   margin: 20px;
@@ -43,6 +43,9 @@ input, select, button {
 }
 .navbar a:hover {
   background-color: #e9ecef;
+}
+.centered-paragraph {
+  text-align: center;
 }
 .period {
   padding: 10px;
