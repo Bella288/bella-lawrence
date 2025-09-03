@@ -3,6 +3,11 @@ body {
   margin: 0;
   background: #f4f4f4;
 }
+hr.thick {
+  border: none; /*Remove Default Border*/
+  height: 5px; /*make 5px thick*/
+  background-color: black; /*Make line black*/
+}
 header {
   text-align: center;
   margin: 20px 0;
